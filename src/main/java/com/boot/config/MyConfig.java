@@ -1,33 +1,33 @@
 package com.boot.config;
 
+import ch.qos.logback.core.db.DBHelper;
 import com.boot.bean.Pet;
 import com.boot.bean.User;
-import com.fasterxml.jackson.core.json.PackageVersion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * @Bean 默认单实例
- * 1.使用@Bean给方法注册成为组件，单实例
- * 2.配置累本身也是组件
- * 3.@Configuration 默认属性 proxyBeanMethods() = true ：代理Bean的方法
- *
+ * 1. 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的
+ * 2. 配置类本身也是组件
+ * 3. proxyBeanMethods:代理Bean的方法
+ * Full(proxyBeanMethods = true):保证每个@Bean方法被调用多少次返回的组件都是单实例的
+ * Lite(proxyBeanMethods = false):返回的组件都是新创建的，增加系统运行速度
+ * 4. @Import({User.class,DBHelper.class):给容器中自动创建这两个类新的组件、默认组件名称就是全类名
  */
-@Import({PackageVersion.class, User.class})
-@Configuration(proxyBeanMethods = true) // 这是一个配置类 == 配置文件
+@Import({User.class, DBHelper.class})
+@Configuration(proxyBeanMethods = true) // 告诉SpringBoot这是一个配置类 == 配置文件
 public class MyConfig {
-    /**
-     * 配置类内部方法不论被外部调用都少次，调用都是容器内同一个实例
-     * @return
-     */
-    @Bean
-    public User user01() { // 给容器中添加组件，方法名是组件ID（也可以在 @Bean 里自定义），返回值是组件的实例
-        return new User("zhangsan", 18);
+    @Bean("user01")
+    public User user01() {
+        User user = new User("zhangsan", 19);
+        // User 组件依赖了Pet组件
+        user.setPet(tom());
+        return user;
     }
 
-    @Bean("tom11")
-    public Pet cat() {
-        return new Pet("mytomcat");
+    @Bean("tom")
+    public Pet tom() {
+        return new Pet("tomcat");
     }
 }

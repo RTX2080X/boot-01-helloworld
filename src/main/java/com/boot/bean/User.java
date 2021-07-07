@@ -2,24 +2,21 @@ package com.boot.bean;
 
 public class User {
     private String name;
-    private int age;
+    private Integer age;
     private Pet pet;
 
     public User() {
     }
 
-    public User(String name, int age) {
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", pet=" + pet +
-                '}';
+    public User(String name, Integer age, Pet pet) {
+        this.name = name;
+        this.age = age;
+        this.pet = pet;
     }
 
     public String getName() {
@@ -30,11 +27,11 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -44,5 +41,14 @@ public class User {
 
     public void setPet(Pet pet) {
         this.pet = pet;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", pet=" + pet +
+                '}';
     }
 }

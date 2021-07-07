@@ -1,9 +1,11 @@
 package com.boot.config;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.boot.bean.Car;
 import com.boot.bean.Pet;
 import com.boot.bean.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,6 +23,12 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration() // 告诉SpringBoot这是一个配置类 == 配置文件
 @ConditionalOnMissingBean(name = "tom")
 @ImportResource("classpath:beans.xml")
+@EnableConfigurationProperties(Car.class)
+/**
+ * EnableConfigurationProperties:
+ * 1. 开启属性配置功能
+ * 2. 组件自动注入容器
+ */
 public class MyConfig {
     @Bean("user01")
     public User user01() {

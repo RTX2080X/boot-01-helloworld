@@ -13,11 +13,11 @@ public class User {
         this.age = age;
     }
 
-    public User(String name, Integer age, Pet pet) {
-        this.name = name;
-        this.age = age;
-        this.pet = pet;
-    }
+//    public User(String name, Integer age, Pet pet) {
+//        this.name = name;
+//        this.age = age;
+//        this.pet = pet;
+//    }
 
     public String getName() {
         return name;

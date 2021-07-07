@@ -3,9 +3,11 @@ package com.boot.config;
 import ch.qos.logback.core.db.DBHelper;
 import com.boot.bean.Pet;
 import com.boot.bean.User;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * 1. 配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的
@@ -16,7 +18,9 @@ import org.springframework.context.annotation.Import;
  * 4. @Import({User.class,DBHelper.class):给容器中自动创建这两个类新的组件、默认组件名称就是全类名
  */
 @Import({User.class, DBHelper.class})
-@Configuration(proxyBeanMethods = true) // 告诉SpringBoot这是一个配置类 == 配置文件
+@Configuration() // 告诉SpringBoot这是一个配置类 == 配置文件
+@ConditionalOnMissingBean(name = "tom")
+@ImportResource("classpath:beans.xml")
 public class MyConfig {
     @Bean("user01")
     public User user01() {

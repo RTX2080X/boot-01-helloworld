@@ -1,5 +1,6 @@
 package com.boot;
 
+import ch.qos.logback.core.db.DBHelper;
 import com.boot.bean.Pet;
 import com.boot.bean.User;
 import com.boot.config.MyConfig;
@@ -35,5 +36,21 @@ public class MainApplication {
         Pet tom = run.getBean("tom", Pet.class);
 
         System.out.println("用户的宠物：" + (user01.getPet() == tom));
+
+        // 5. 获取组件
+        String[] beanNamesForType = run.getBeanNamesForType(User.class);
+        System.out.println("==========================");
+        for (String s : beanNamesForType) {
+            System.out.println(s);
+        }
+        DBHelper bean1 = run.getBean(DBHelper.class);
+        System.out.println(bean1);
+
+        // @ImportResource
+        System.out.println("=========--=-=-===-=======");
+        boolean hhhh = run.containsBean("hhhh");
+        boolean tom123123 = run.containsBean("tom123123");
+        System.out.println("hhhh：" + hhhh);//true
+        System.out.println("tom123123：" + tom123123);//true
     }
 }

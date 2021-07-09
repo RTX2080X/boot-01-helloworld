@@ -5,10 +5,16 @@ import com.boot.bean.Pet;
 import com.boot.bean.User;
 import com.boot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
+//@SpringBootConfiguration
+//@EnableAutoConfiguration
+//@Component("com.boot")
 public class MainApplication {
     public static void main(String[] args) {
         // 1. 返回IOC容器

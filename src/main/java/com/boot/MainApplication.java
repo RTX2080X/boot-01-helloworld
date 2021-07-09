@@ -10,6 +10,11 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootApplication
 //@SpringBootConfiguration
@@ -58,5 +63,6 @@ public class MainApplication {
         boolean tom123123 = run.containsBean("tom123123");
         System.out.println("hhhh：" + hhhh);//true
         System.out.println("tom123123：" + tom123123);//true
+        System.out.println("==========");
     }
 }
